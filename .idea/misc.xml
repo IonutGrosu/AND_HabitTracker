@@ -4,8 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Ionut Grosu/OneDrive - ViaUC/Sem4/AND_HabitTracker/app/src/main/res/layout/activity_login.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/Ionut Grosu/OneDrive - ViaUC/Sem4/AND_HabitTracker/app/src/main/res/layout/activity_main.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/Ionut Grosu/OneDrive - ViaUC/Sem4/AND_HabitTracker/app/src/main/res/layout/activity_register.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/Ionut Grosu/OneDrive - ViaUC/Sem4/AND_HabitTracker/app/src/main/res/layout/bottom_appbar.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/Ionut Grosu/OneDrive - ViaUC/Sem4/AND_HabitTracker/app/src/main/res/layout/fragment_account.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/Ionut Grosu/OneDrive - ViaUC/Sem4/AND_HabitTracker/app/src/main/res/layout/fragment_create.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/Ionut Grosu/OneDrive - ViaUC/Sem4/AND_HabitTracker/app/src/main/res/layout/fragment_friends.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/Ionut Grosu/OneDrive - ViaUC/Sem4/AND_HabitTracker/app/src/main/res/layout/fragment_overview.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/Ionut Grosu/OneDrive - ViaUC/Sem4/AND_HabitTracker/app/src/main/res/layout/top_appbar.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/Ionut Grosu/OneDrive - ViaUC/Sem4/AND_HabitTracker/app/src/main/res/menu/toolbar_menu.xml" value="0.34479166666666666" />
       </map>
     </option>
   </component>

@@ -1,8 +1,11 @@
-package io.github.ionutgrosu.and_habittracker;
+package io.github.ionutgrosu.and_habittracker.repositories;
 
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
+
+import io.github.ionutgrosu.and_habittracker.DAOs.HabitDAO;
+import io.github.ionutgrosu.and_habittracker.models.Habit;
 
 public class HabitRepository {
 

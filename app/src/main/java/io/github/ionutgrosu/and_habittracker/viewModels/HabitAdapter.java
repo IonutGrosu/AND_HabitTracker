@@ -1,4 +1,4 @@
-package io.github.ionutgrosu.and_habittracker;
+package io.github.ionutgrosu.and_habittracker.viewModels;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import io.github.ionutgrosu.and_habittracker.R;
+import io.github.ionutgrosu.and_habittracker.models.Habit;
 
 public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> {
 

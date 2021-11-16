@@ -1,4 +1,4 @@
-package io.github.ionutgrosu.and_habittracker;
+package io.github.ionutgrosu.and_habittracker.models;
 
 import java.util.Date;
 

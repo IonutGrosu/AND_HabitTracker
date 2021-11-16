@@ -1,9 +1,12 @@
-package io.github.ionutgrosu.and_habittracker;
+package io.github.ionutgrosu.and_habittracker.viewModels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.List;
+
+import io.github.ionutgrosu.and_habittracker.repositories.HabitRepository;
+import io.github.ionutgrosu.and_habittracker.models.Habit;
 
 public class HabitViewModel extends ViewModel {
 

@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import io.github.ionutgrosu.and_habittracker.Habit;
-import io.github.ionutgrosu.and_habittracker.HabitAdapter;
-import io.github.ionutgrosu.and_habittracker.HabitViewModel;
+import io.github.ionutgrosu.and_habittracker.models.Habit;
+import io.github.ionutgrosu.and_habittracker.viewModels.HabitAdapter;
+import io.github.ionutgrosu.and_habittracker.viewModels.HabitViewModel;
 import io.github.ionutgrosu.and_habittracker.activities.MainActivity;
 import io.github.ionutgrosu.and_habittracker.R;
 

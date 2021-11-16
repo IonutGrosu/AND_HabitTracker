@@ -8,6 +8,7 @@
     android:background="#0cc">
 
     <TextView
+        android:id="@+id/accountInfoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Account"
@@ -24,5 +25,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="64dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

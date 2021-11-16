@@ -1,4 +1,4 @@
-package io.github.ionutgrosu.and_habittracker;
+package io.github.ionutgrosu.and_habittracker.DAOs;
 
 import android.util.Log;
 
@@ -7,6 +7,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.github.ionutgrosu.and_habittracker.models.Habit;
 
 public class HabitDAO {
 

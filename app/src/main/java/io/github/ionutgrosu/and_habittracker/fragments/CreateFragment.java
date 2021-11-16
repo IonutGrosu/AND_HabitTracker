@@ -13,8 +13,8 @@ import android.widget.EditText;
 
 import java.util.Calendar;
 
-import io.github.ionutgrosu.and_habittracker.Habit;
-import io.github.ionutgrosu.and_habittracker.HabitViewModel;
+import io.github.ionutgrosu.and_habittracker.models.Habit;
+import io.github.ionutgrosu.and_habittracker.viewModels.HabitViewModel;
 import io.github.ionutgrosu.and_habittracker.activities.MainActivity;
 import io.github.ionutgrosu.and_habittracker.R;
 
@@ -35,12 +35,6 @@ public class CreateFragment extends Fragment {
 
 
         habitViewModel = new ViewModelProvider(this).get(HabitViewModel.class);
-    }
-
-    private void initViews() {
-        habitNameInput = getView().findViewById(R.id.habitNameInput);
-        habitDurationInput = getView().findViewById(R.id.habitDurationInput);
-        saveHabitBtn = getView().findViewById(R.id.saveHabitBtn);
     }
 
     @Override

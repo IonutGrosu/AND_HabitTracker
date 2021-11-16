@@ -70,6 +70,12 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        if (password.length() < 6){
+            loginPasswordInput.setError("Password should be at least 6 characters long");
+            loginPasswordInput.requestFocus();
+            return;
+        }
+
         progressBar.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override

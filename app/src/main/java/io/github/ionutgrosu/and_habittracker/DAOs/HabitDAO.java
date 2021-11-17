@@ -2,8 +2,13 @@ package io.github.ionutgrosu.and_habittracker.DAOs;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +20,12 @@ public class HabitDAO {
     private MutableLiveData<List<Habit>> allHabits;
     private static HabitDAO instance;
 
+    private FirebaseDatabase db;
+
     private HabitDAO(){
+        db = FirebaseDatabase.getInstance("https://and-habittracker-default-rtdb.europe-west1.firebasedatabase.app/");
+
         allHabits = new MutableLiveData<>();
-        List<Habit> temp = new ArrayList<>();
-        temp.add(new Habit("test1", null, 53));
-        temp.add(new Habit("test1", null, 53));
-        temp.add(new Habit("test1", null, 53));
-        allHabits.setValue(temp);
-        Log.d("habitslist", temp.toString());
     }
 
     public static HabitDAO getInstance(){
@@ -37,10 +40,14 @@ public class HabitDAO {
     }
 
     public void insert(Habit habit){
-        List<Habit> currentHabits = allHabits.getValue();
-        currentHabits.add(habit);
-        allHabits.setValue(currentHabits);
-        Log.d("wtf",habit.toString());
+        db.getReference("Habits")
+                .setValue(habit)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                    }
+                });
     }
 
     public void delete(String name){

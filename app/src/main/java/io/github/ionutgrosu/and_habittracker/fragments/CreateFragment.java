@@ -30,10 +30,6 @@ public class CreateFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ((MainActivity) getActivity()).setTopbarTitle("Create");
-
-
-
         habitViewModel = new ViewModelProvider(this).get(HabitViewModel.class);
     }
 
@@ -42,18 +38,31 @@ public class CreateFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_create, container, false);
 
-        habitNameInput = view.findViewById(R.id.habitNameInput);
-        habitDurationInput = view.findViewById(R.id.habitDurationInput);
-        saveHabitBtn = view.findViewById(R.id.saveHabitBtn);
+        initViews(view);
+
+        saveHabitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveHabit();
+            }
+        });
 
         return view;
     }
 
-    public void saveNote(){
+    private void initViews(View view) {
+        ((MainActivity) getActivity()).setTopbarTitle("Create");
+
+        habitNameInput = view.findViewById(R.id.habitNameInput);
+        habitDurationInput = view.findViewById(R.id.habitDurationInput);
+        saveHabitBtn = view.findViewById(R.id.saveHabitBtn);
+    }
+
+    public void saveHabit(){
         Habit temp = new Habit(
                 habitNameInput.getText().toString(),
                 Calendar.getInstance().getTime(),
-               Integer.parseInt(habitDurationInput.getText().toString())
+                Integer.parseInt(habitDurationInput.getText().toString())
         );
         habitViewModel.insert(temp);
     }

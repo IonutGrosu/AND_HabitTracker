@@ -48,10 +48,11 @@ public class OverviewFragment extends Fragment {
         myHabitsList.setLayoutManager(new LinearLayoutManager(getContext()));
 
         habitViewModel = new HabitViewModel();
-        habits = (ArrayList<Habit>) habitViewModel.getAllHabits().getValue();
+        //TODO uncomment these
+        //habits = (ArrayList<Habit>) habitViewModel.getAllHabits().getValue();
 
-        habitAdapter = new HabitAdapter(habits);
-        myHabitsList.setAdapter(habitAdapter);
+        //habitAdapter = new HabitAdapter(habits);
+        //myHabitsList.setAdapter(habitAdapter);
 
         return view;
 

@@ -6,16 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".fragments.CreateFragment">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Start forming new habits here"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
     <EditText
         android:id="@+id/habitNameInput"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="192dp"
+        android:layout_marginTop="240dp"
+        android:hint="Habit name"
         app:layout_constraintEnd_toEndOf="@+id/habitDurationInput"
         app:layout_constraintStart_toStartOf="@+id/habitDurationInput"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:hint="Duration"
         android:id="@+id/habitDurationInput"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
@@ -27,6 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/habitNameInput" />
 
     <EditText
+        android:hint="When to repeat"
         android:id="@+id/editText"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
@@ -41,11 +57,11 @@
         android:id="@+id/saveHabitBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="96dp"
         android:text="Save habit"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintStart_toStartOf="@+id/editText" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"

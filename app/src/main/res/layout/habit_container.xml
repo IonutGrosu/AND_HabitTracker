@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="48dp"
+    android:layout_height="96dp"
     android:layout_margin="16dp">
 
 
@@ -11,23 +11,33 @@
         android:id="@+id/habitContainerName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:fontFamily="sans-serif-medium"
         android:text="Name"
         android:textAlignment="textStart"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox"
+        app:layout_constraintEnd_toStartOf="@+id/habitContainerCheckBox"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/habitContainerCheckBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="@+id/habitContainerName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/habitContainerName" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/habitContainerProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

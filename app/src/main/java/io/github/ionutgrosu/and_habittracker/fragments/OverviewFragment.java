@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import io.github.ionutgrosu.and_habittracker.models.Habit;
@@ -43,6 +44,16 @@ public class OverviewFragment extends Fragment {
             @Override
             public void onChanged(List<Habit> habits) {
                 habitAdapter = new HabitAdapter((ArrayList<Habit>) habits);
+                habitAdapter.setOnCheckboxCheckedListener((checked, habit) -> {
+                    if (checked){
+                        habit.increaseProgress();
+                        habitViewModel.update(habit);
+                    } else {
+                        habit.decreaseProgress();
+                        habitViewModel.update(habit);
+                    }
+                });
+
                 myHabitsList.setAdapter(habitAdapter);
                 progressBar.setVisibility(View.GONE);
             }
@@ -63,7 +74,7 @@ public class OverviewFragment extends Fragment {
 
     }
 
-    private void initViews(View view){
+    private void initViews(View view) {
         progressBar = view.findViewById(R.id.overviewFragmentPB);
 
         myHabitsList = view.findViewById(R.id.rv);

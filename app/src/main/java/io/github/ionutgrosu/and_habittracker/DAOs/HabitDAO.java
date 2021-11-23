@@ -1,5 +1,7 @@
 package io.github.ionutgrosu.and_habittracker.DAOs;
 
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
@@ -53,7 +55,7 @@ public class HabitDAO {
         updateDatabaseReference();
         List<Habit> habits = allHabits.getValue();
 
-        dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        dbReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 habits.clear();
@@ -69,44 +71,28 @@ public class HabitDAO {
                 System.out.println("The read failed: " + error.getMessage());
             }
         });
-
-//        dbReference.addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                Habit habit = snapshot.getValue(Habit.class);
-//                habits.add(habit);
-//                allHabits.setValue(habits);
-//            }
-//
-//            @Override
-//            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
     }
 
     public void insert(Habit habit) {
         updateDatabaseReference();
 
-        List<Habit> temp = allHabits.getValue();
-        dbReference
-                .push()
+        DatabaseReference tempRef = dbReference.push();
+        habit.setId(tempRef.getKey());
+
+
+        tempRef
+                //.push()
                 .setValue(habit);
+    }
+
+    public void update(Habit habit) {
+        updateDatabaseReference();
+
+        dbReference.child(habit.getId()).setValue(habit);
+
+        System.out.println("********************************************* updating habit" + habit.getId());
+
+
     }
 
     public void delete(String name) {

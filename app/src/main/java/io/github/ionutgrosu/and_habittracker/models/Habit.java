@@ -4,14 +4,32 @@ import java.util.Date;
 
 public class Habit {
 
+    private String id;
     private String name;
     private Date startDate;
+    private Date lastCheckDate;
     private int duration;
+    private int progress;
+
+
+    public Habit() {
+    }
 
     public Habit(String name, Date startDate, int duration) {
         this.name = name;
         this.startDate = startDate;
+        lastCheckDate = new Date();
+        lastCheckDate.setTime(0);
         this.duration = duration;
+        progress = 0;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -30,6 +48,14 @@ public class Habit {
         this.startDate = startDate;
     }
 
+    public Date getLastCheckDate() {
+        return lastCheckDate;
+    }
+
+    public void setLastCheckDate(Date lastCheckDate) {
+        this.lastCheckDate = lastCheckDate;
+    }
+
     public int getDuration() {
         return duration;
     }
@@ -38,12 +64,30 @@ public class Habit {
         this.duration = duration;
     }
 
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
+
+    public void increaseProgress(){
+        progress++;
+    }
+
+    public void decreaseProgress(){
+        progress--;
+    }
+
     @Override
     public String toString() {
         return "Habit{" +
                 "name='" + name + '\'' +
                 ", startDate=" + startDate +
+                ", lastCheckDate=" + lastCheckDate +
                 ", duration=" + duration +
+                ", progress=" + progress +
                 '}';
     }
 }

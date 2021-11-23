@@ -34,4 +34,8 @@ public class HabitRepository {
     public void delete(String name){
         habitDAO.delete(name);
     }
+
+    public void update(Habit habit) {
+        habitDAO.update(habit);
+    }
 }

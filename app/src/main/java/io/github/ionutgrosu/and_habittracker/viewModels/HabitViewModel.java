@@ -24,6 +24,8 @@ public class HabitViewModel extends ViewModel {
         repository.insert(habit);
     }
 
+    public void update(Habit habit) {repository.update(habit);}
+
     public void delete(String name){
         repository.delete(name);
     }

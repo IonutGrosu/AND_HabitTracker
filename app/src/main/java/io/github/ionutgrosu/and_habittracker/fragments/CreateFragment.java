@@ -11,7 +11,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import java.util.Calendar;
+import java.util.Date;
 
 import io.github.ionutgrosu.and_habittracker.models.Habit;
 import io.github.ionutgrosu.and_habittracker.viewModels.HabitViewModel;
@@ -22,8 +25,8 @@ public class CreateFragment extends Fragment {
 
     private HabitViewModel habitViewModel;
 
-    private EditText habitNameInput;
-    private EditText habitDurationInput;
+    private TextInputEditText habitNameInput;
+    private TextInputEditText habitDurationInput;
     private Button saveHabitBtn;
 
     @Override
@@ -44,10 +47,16 @@ public class CreateFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 saveHabit();
+
             }
         });
 
         return view;
+    }
+
+    private void clearTextInputs() {
+        habitNameInput.getText().clear();
+        habitDurationInput.getText().clear();
     }
 
     private void initViews(View view) {
@@ -58,12 +67,36 @@ public class CreateFragment extends Fragment {
         saveHabitBtn = view.findViewById(R.id.saveHabitBtn);
     }
 
-    public void saveHabit(){
+    public void saveHabit() {
+        String name = habitNameInput.getText().toString().trim();
+        Date today = Calendar.getInstance().getTime();
+        int duration;
+        try {
+            duration = Integer.parseInt(habitDurationInput.getText().toString().trim());
+        } catch (NumberFormatException e){
+            habitDurationInput.setError("Enter a valid duration");
+            habitDurationInput.requestFocus();
+            return;
+        }
+
+        if (name.isEmpty()){
+            habitNameInput.setError("Enter the name of your habit");
+            habitNameInput.requestFocus();
+            return;
+        }
+
+        if (duration <= 0){
+            habitDurationInput.setError("Enter a valid duration");
+            habitDurationInput.requestFocus();
+            return;
+        }
+
         Habit temp = new Habit(
-                habitNameInput.getText().toString(),
-                Calendar.getInstance().getTime(),
-                Integer.parseInt(habitDurationInput.getText().toString())
+                name,
+                today,
+                duration
         );
         habitViewModel.insert(temp);
+        clearTextInputs();
     }
 }

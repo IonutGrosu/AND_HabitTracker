@@ -32,7 +32,6 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.habitName.setText(habits.get(position).getName());
-        holder.habitDuration.setText(String.valueOf(habits.get(position).getDuration()));
     }
 
     @Override
@@ -43,12 +42,10 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView habitName;
-        TextView habitDuration;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             habitName = itemView.findViewById(R.id.habitContainerName);
-            habitDuration = itemView.findViewById(R.id.habitContainerDuration);
         }
     }
 }

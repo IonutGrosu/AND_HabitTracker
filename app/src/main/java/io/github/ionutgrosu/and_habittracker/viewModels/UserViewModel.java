@@ -33,5 +33,6 @@ public class UserViewModel extends ViewModel {
         } else {
             userToBefriend = userRepository.getUserWithUsername(input);
         }
+
     }
 }

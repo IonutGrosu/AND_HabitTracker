@@ -34,7 +34,7 @@ public class UserDAO {
     private UserDAO() {
         dbRef = FirebaseDatabase.getInstance("https://and-habittracker-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         allUsers = new ArrayList<>();
-        allUsers = getCurrentDbUsers();
+        getCurrentDbUsers();
     }
 
     public static UserDAO getInstance() {
@@ -66,16 +66,14 @@ public class UserDAO {
 
     public void insert(User userToSave) {
         try {
-            DatabaseReference tempRef = dbRef.push();
-            //dbRef.child(userToSave.getUid()).setValue(userToSave);
-            tempRef.setValue(userToSave);
+            dbRef.child(userToSave.getUid()).setValue(userToSave);
         } catch (Exception e) {
             throw e;
         }
     }
 
     public User getUserWithEmail(String email) {
-        ArrayList<User> allUsers = getCurrentDbUsers();
+        getCurrentDbUsers();
         for (User user :
                 allUsers) {
             if (user.getEmail().equals(email)) {
@@ -86,7 +84,7 @@ public class UserDAO {
     }
 
     public User getUserWithUsername(String username) {
-        ArrayList<User> allUsers = getCurrentDbUsers();
+        getCurrentDbUsers();
         for (User user :
                 allUsers) {
             if (user.getUsername().equals(username)) {
@@ -96,22 +94,20 @@ public class UserDAO {
         return null;
     }
 
-    private ArrayList<User> getCurrentDbUsers() {
-        ArrayList<User> users = new ArrayList<>();
+    private void getCurrentDbUsers() {
 
         dbRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (task.isSuccessful()){
+                    allUsers.clear();
                     for (DataSnapshot snapshot: Objects.requireNonNull(task.getResult()).getChildren()) {
-                        users.add(snapshot.getValue(User.class));
+                        allUsers.add(snapshot.getValue(User.class));
                     }
                 } else {
 
                 }
             }
         });
-
-        return users;
     }
 }

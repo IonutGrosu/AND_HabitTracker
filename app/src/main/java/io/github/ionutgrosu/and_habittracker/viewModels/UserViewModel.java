@@ -23,6 +23,15 @@ public class UserViewModel extends ViewModel {
         User userToSave = new User(username, email, uid);
 
         userRepository.saveUser(userToSave);
+    }
 
+    public void sendFriendRequest(String input) {
+        User userToBefriend;
+
+        if (input.contains("@")){
+            userToBefriend = userRepository.getUserWithEmail(input);
+        } else {
+            userToBefriend = userRepository.getUserWithUsername(input);
+        }
     }
 }

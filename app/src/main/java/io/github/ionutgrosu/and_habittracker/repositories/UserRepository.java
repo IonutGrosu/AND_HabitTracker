@@ -28,4 +28,12 @@ public class UserRepository {
     public void saveUser(User userToSave) throws Exception {
         userDAO.insert(userToSave);
     }
+
+    public User getUserWithEmail(String email) {
+        return userDAO.getUserWithEmail(email);
+    }
+
+    public User getUserWithUsername(String username) {
+        return userDAO.getUserWithUsername(username);
+    }
 }

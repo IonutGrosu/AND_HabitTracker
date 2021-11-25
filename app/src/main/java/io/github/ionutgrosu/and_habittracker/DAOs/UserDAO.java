@@ -1,5 +1,7 @@
 package io.github.ionutgrosu.and_habittracker.DAOs;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -8,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -16,10 +19,10 @@ import io.github.ionutgrosu.and_habittracker.models.User;
 public class UserDAO {
     private static UserDAO instance;
 
-    private FirebaseDatabase db;
+    private DatabaseReference dbRef;
 
     private UserDAO(){
-        db = FirebaseDatabase.getInstance("https://and-habittracker-default-rtdb.europe-west1.firebasedatabase.app/");
+        dbRef = FirebaseDatabase.getInstance("https://and-habittracker-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
     }
 
     public static UserDAO getInstance(){
@@ -32,7 +35,7 @@ public class UserDAO {
     public LiveData<User> getLoggedInUser(){
         FirebaseUser authUser = FirebaseAuth.getInstance().getCurrentUser();
         MutableLiveData<User> userProfile = new MutableLiveData<>();
-        db.getReference("Users").child(authUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        dbRef.child(authUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User dbUser = snapshot.getValue(User.class);
@@ -47,5 +50,13 @@ public class UserDAO {
         });
 
         return userProfile;
+    }
+
+    public void insert(User userToSave) {
+        try{
+            dbRef.child(userToSave.getUid()).setValue(userToSave);
+        } catch (Exception e){
+            throw e;
+        }
     }
 }

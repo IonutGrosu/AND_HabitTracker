@@ -9,8 +9,6 @@ import io.github.ionutgrosu.and_habittracker.repositories.UserRepository;
 
 public class UserViewModel extends ViewModel {
 
-    private LiveData<User> currentUser;
-
     private UserRepository userRepository;
 
     public UserViewModel() {
@@ -19,5 +17,12 @@ public class UserViewModel extends ViewModel {
 
     public LiveData<User> getLoggedInUser(){
         return userRepository.getLoggedInUser();
+    }
+
+    public void saveRegisteredUser(String username, String email, String uid) throws Exception {
+        User userToSave = new User(username, email, uid);
+
+        userRepository.saveUser(userToSave);
+
     }
 }

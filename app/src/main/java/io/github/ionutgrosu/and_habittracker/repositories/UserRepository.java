@@ -25,4 +25,7 @@ public class UserRepository {
         return userDAO.getLoggedInUser();
     }
 
+    public void saveUser(User userToSave) throws Exception {
+        userDAO.insert(userToSave);
+    }
 }

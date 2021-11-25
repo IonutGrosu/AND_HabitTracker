@@ -2,6 +2,7 @@ package io.github.ionutgrosu.and_habittracker.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import io.github.ionutgrosu.and_habittracker.R;
 import io.github.ionutgrosu.and_habittracker.models.User;
+import io.github.ionutgrosu.and_habittracker.viewModels.UserViewModel;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -34,12 +36,16 @@ public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
+    private UserViewModel userViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
+
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         initViews();
 
@@ -90,31 +96,15 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
-                if (task.isSuccessful()){
 
-                    FirebaseDatabase.getInstance("https://and-habittracker-default-rtdb.europe-west1.firebasedatabase.app/")
-                            .getReference("Users")
-                            .child(mAuth.getCurrentUser().getUid())
-                            .setValue(new User(username, email)).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()){
-                                        Log.d("mauth", "saveUser:success");
-                                        Toast.makeText(getApplicationContext(), "User has been registered successfully.",
-                                                Toast.LENGTH_SHORT).show();
+                try {
+                    userViewModel.saveRegisteredUser(username, email, mAuth.getUid());
 
-                                        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-                                    } else {
-                                        Log.d("mauth", "saveUser:failure", task.getException());
-                                        Toast.makeText(getApplicationContext(), "Authentication failed.",
-                                                Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-                } else {
-                    Log.d("mauth", "createUserWithEmail:failure", task.getException());
-                    Toast.makeText(getApplicationContext(), "Authentication failed.",
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "User has been registered successfully", Toast.LENGTH_SHORT).show();
+                    
+                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Authentication failed", Toast.LENGTH_SHORT).show();
                 }
             }
         });

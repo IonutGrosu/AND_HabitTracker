@@ -3,13 +3,15 @@ package io.github.ionutgrosu.and_habittracker.models;
 public class User {
     private String username;
     private String email;
+    private String uid;
 
     public User() {
     }
 
-    public User(String username, String email) {
+    public User(String username, String email, String uid) {
         this.username = username;
         this.email = email;
+        this.uid = uid;
     }
 
     public String getUsername() {
@@ -26,6 +28,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     @Override

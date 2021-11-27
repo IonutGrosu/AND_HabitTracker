@@ -94,6 +94,17 @@ public class UserDAO {
         return null;
     }
 
+    public User getUserWithUid(String uid) {
+        getCurrentDbUsers();
+        for (User user :
+                allUsers) {
+            if (user.getUid().equals(uid)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
     private void getCurrentDbUsers() {
 
         dbRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {

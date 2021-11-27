@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,6 +41,7 @@ public class OverviewFragment extends Fragment {
     public void onResume() {
         super.onResume();
         ((MainActivity) getActivity()).setTopbarTitle("Overview");
+
         habitViewModel.getAllHabits().observe(getViewLifecycleOwner(), new Observer<List<Habit>>() {
             @Override
             public void onChanged(List<Habit> habits) {
@@ -68,10 +70,9 @@ public class OverviewFragment extends Fragment {
 
         initViews(view);
 
-        habitViewModel = new HabitViewModel();
+        habitViewModel = new ViewModelProvider(this).get(HabitViewModel.class);
 
         return view;
-
     }
 
     private void initViews(View view) {

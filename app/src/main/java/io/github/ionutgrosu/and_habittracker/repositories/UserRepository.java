@@ -36,4 +36,8 @@ public class UserRepository {
     public User getUserWithUsername(String username) {
         return userDAO.getUserWithUsername(username);
     }
+
+    public User getUserWithUid(String uid) {
+        return userDAO.getUserWithUid(uid);
+    }
 }

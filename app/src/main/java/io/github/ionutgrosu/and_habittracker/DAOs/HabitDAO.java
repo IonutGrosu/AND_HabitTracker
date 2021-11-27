@@ -79,25 +79,17 @@ public class HabitDAO {
         DatabaseReference tempRef = dbReference.push();
         habit.setId(tempRef.getKey());
 
-
-        tempRef
-                //.push()
-                .setValue(habit);
+        tempRef.setValue(habit);
     }
 
     public void update(Habit habit) {
         updateDatabaseReference();
 
         dbReference.child(habit.getId()).setValue(habit);
-
-        System.out.println("********************************************* updating habit" + habit.getId());
-
-
     }
 
     public void delete(String name) {
         updateDatabaseReference();
-
     }
 
     private void updateDatabaseReference(){

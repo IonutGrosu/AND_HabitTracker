@@ -1,5 +1,9 @@
 package io.github.ionutgrosu.and_habittracker.repositories;
 
+import androidx.lifecycle.MutableLiveData;
+
+import java.util.ArrayList;
+
 import io.github.ionutgrosu.and_habittracker.DAOs.FriendDAO;
 import io.github.ionutgrosu.and_habittracker.models.User;
 
@@ -20,5 +24,9 @@ public class FriendRepository {
 
     public void sendFriendRequest(User friendRequestReceiver, String senderUID) {
         friendDAO.saveFriendRequest(friendRequestReceiver, senderUID);
+    }
+
+    public MutableLiveData<ArrayList<String>> getAllSenderUids() {
+        return friendDAO.getAllSenderUids();
     }
 }

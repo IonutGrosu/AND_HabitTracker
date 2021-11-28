@@ -34,7 +34,7 @@ public class FriendDAO {
         senderUids = new ArrayList<>();
         senderUidsLiveData.setValue(senderUids);
 
-        addListenerForFriendRequests();
+        //addListenerForFriendRequests();
     }
 
     public static FriendDAO getInstance() {
@@ -46,7 +46,12 @@ public class FriendDAO {
 
 
     public void saveFriendRequest(User friendRequestReceiver, String senderUID) {
-        dbRef.child(friendRequestReceiver.getUid()).push().setValue(senderUID);
+        FirebaseDatabase
+                .getInstance("https://and-habittracker-default-rtdb.europe-west1.firebasedatabase.app/")
+                .getReference("FriendRequests")
+                .child(friendRequestReceiver.getUid())
+                .push()
+                .setValue(senderUID);
     }
 
     private void addListenerForFriendRequests() {

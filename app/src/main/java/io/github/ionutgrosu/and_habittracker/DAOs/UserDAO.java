@@ -45,13 +45,12 @@ public class UserDAO {
     }
 
     public LiveData<User> getLoggedInUser() {
-        FirebaseUser authUser = FirebaseAuth.getInstance().getCurrentUser();
         MutableLiveData<User> userProfile = new MutableLiveData<>();
-        dbRef.child(authUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        dbRef.child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User dbUser = snapshot.getValue(User.class);
-                System.out.println(dbUser.getUsername());
+                System.out.println("logged in user: " + dbUser.getUsername());
                 userProfile.setValue(dbUser);
             }
 
@@ -118,6 +117,24 @@ public class UserDAO {
                 } else {
 
                 }
+            }
+        });
+    }
+
+    public void updateUser(User user) {
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    if (ds.getValue(User.class).getUid().equals(user.getUid())){
+                        ds.getRef().setValue(user);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }

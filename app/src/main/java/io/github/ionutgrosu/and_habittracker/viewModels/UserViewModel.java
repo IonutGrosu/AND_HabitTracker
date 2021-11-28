@@ -77,8 +77,24 @@ public class UserViewModel extends ViewModel {
     public void acceptFriendRequest(User user) {
         //  delete friend request entry from db
         friendRepository.removeFriendRequest(user);
-        //  add user to logged in user's friends
-        //  update logged in user entry in db
+
+//        getLoggedInUser().observeForever(new Observer<User>() {
+//            @Override
+//            public void onChanged(User loggedInUser) {
+//                //  add user to logged in user's friends
+//                loggedInUser.addFriend(user.getUid());
+//                //  update logged in user entry in db
+//                userRepository.updateUser(loggedInUser);
+//            }
+//        });
+
+        User loggedInUser = userRepository.getUserWithUid(FirebaseAuth.getInstance().getUid());
+        loggedInUser.addFriend(user.getUid());
+
+        userRepository.updateUser(loggedInUser);
+
+        user.addFriend(FirebaseAuth.getInstance().getUid());
+        userRepository.updateUser(user);
     }
 
     public void declineFriendRequest(User user) {

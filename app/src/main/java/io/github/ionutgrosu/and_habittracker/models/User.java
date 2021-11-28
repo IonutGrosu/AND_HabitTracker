@@ -1,9 +1,13 @@
 package io.github.ionutgrosu.and_habittracker.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private String username;
     private String email;
     private String uid;
+    private List<String> friendsUids = new ArrayList<>();
 
     public User() {
     }
@@ -12,6 +16,14 @@ public class User {
         this.username = username;
         this.email = email;
         this.uid = uid;
+    }
+
+    public void addFriend(String uid){
+        friendsUids.add(uid);
+    }
+
+    public List<String> getFriendsUids(){
+        return friendsUids;
     }
 
     public String getUsername() {

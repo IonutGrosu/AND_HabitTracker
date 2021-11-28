@@ -40,4 +40,8 @@ public class UserRepository {
     public User getUserWithUid(String uid) {
         return userDAO.getUserWithUid(uid);
     }
+
+    public void updateUser(User user) {
+        userDAO.updateUser(user);
+    }
 }

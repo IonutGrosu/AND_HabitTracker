@@ -22,6 +22,8 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
     private ArrayList<User> requestingUsers;
     private Activity parentActivity;
 
+    private FriendRequestManager friendRequestManager;
+
     public FriendRequestAdapter(ArrayList<User> requestingUsers, Activity parentActivity){
         this.requestingUsers = requestingUsers;
         this.parentActivity = parentActivity;
@@ -29,6 +31,10 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
 
     public void setRequestingUsers (ArrayList<User> users){
         requestingUsers = users;
+    }
+
+    public void setFriendRequestManager (FriendRequestManager friendRequestManager){
+        this.friendRequestManager = friendRequestManager;
     }
 
     @NonNull
@@ -63,6 +69,25 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
             usernameView = itemView.findViewById(R.id.usernameFriendRequestContainer);
             acceptBtn = itemView.findViewById(R.id.acceptBtnFriendRequestContainer);
             declineBtn = itemView.findViewById(R.id.declineBtnFriendRequestContainer);
+
+            acceptBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    friendRequestManager.acceptRequest(requestingUsers.get(ViewHolder.this.getAdapterPosition()));
+                }
+            });
+
+            declineBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    friendRequestManager.declineRequest(requestingUsers.get(ViewHolder.this.getAdapterPosition()));
+                }
+            });
         }
+    }
+
+    public interface FriendRequestManager {
+        void acceptRequest(User user);
+        void declineRequest(User user);
     }
 }

@@ -82,6 +82,20 @@ public class FriendsFragment extends Fragment {
 
         friendRequestsRV.setAdapter(friendRequestAdapter);
 
+        friendRequestAdapter.setFriendRequestManager(new FriendRequestAdapter.FriendRequestManager() {
+            @Override
+            public void acceptRequest(User user) {
+                System.out.println("*/*/*/*/        Accepting request" + user.getUsername());
+                userViewModel.acceptFriendRequest(user);
+            }
+
+            @Override
+            public void declineRequest(User user) {
+                System.out.println("*/*/*/*/        Declining request" + user.getUsername());
+            }
+        });
+
+
         friendRequestBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,9 +106,10 @@ public class FriendsFragment extends Fragment {
         return view;
     }
 
+
+
     private void handleFriendRequest() {
         String input = friendRequestInput.getText().toString().trim();
-
         if (input.isEmpty()){
             friendRequestInput.setError("Enter username or email");
             friendRequestInput.requestFocus();
@@ -102,7 +117,6 @@ public class FriendsFragment extends Fragment {
         }
 
         userViewModel.sendFriendRequest(input);
-
     }
 
     private void initViews(View view) {

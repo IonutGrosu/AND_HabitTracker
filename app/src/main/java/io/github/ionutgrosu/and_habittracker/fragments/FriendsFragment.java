@@ -65,7 +65,6 @@ public class FriendsFragment extends Fragment {
         userViewModel.usersRequestingFriendship.observe(getViewLifecycleOwner(), new Observer<ArrayList<User>>() {
             @Override
             public void onChanged(ArrayList<User> users) {
-                System.out.println(users.toString());
                 friendRequestsRV.setAdapter(friendRequestAdapter);
                 friendRequestAdapter.setRequestingUsers(users);
                 friendRequestsPB.setVisibility(View.GONE);
@@ -92,6 +91,9 @@ public class FriendsFragment extends Fragment {
             @Override
             public void declineRequest(User user) {
                 System.out.println("*/*/*/*/        Declining request" + user.getUsername());
+                userViewModel.declineFriendRequest(user);
+                userViewModel.getFriendRequests();
+
             }
         });
 

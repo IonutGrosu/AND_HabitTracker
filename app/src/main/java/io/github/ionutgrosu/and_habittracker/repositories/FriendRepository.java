@@ -29,4 +29,8 @@ public class FriendRepository {
     public MutableLiveData<ArrayList<String>> getAllSenderUids() {
         return friendDAO.getAllSenderUids();
     }
+
+    public void removeFriendRequest(User user) {
+        friendDAO.removeFriendRequest(user);
+    }
 }

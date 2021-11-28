@@ -75,6 +75,14 @@ public class UserViewModel extends ViewModel {
     }
 
     public void acceptFriendRequest(User user) {
+        //  delete friend request entry from db
+        friendRepository.removeFriendRequest(user);
+        //  add user to logged in user's friends
+        //  update logged in user entry in db
+    }
 
+    public void declineFriendRequest(User user) {
+        //  delete friend request entry from db
+        friendRepository.removeFriendRequest(user);
     }
 }

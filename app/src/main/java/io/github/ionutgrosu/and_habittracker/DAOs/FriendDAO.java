@@ -33,8 +33,6 @@ public class FriendDAO {
         senderUidsLiveData = new MutableLiveData<>();
         senderUids = new ArrayList<>();
         senderUidsLiveData.setValue(senderUids);
-
-        //addListenerForFriendRequests();
     }
 
     public static FriendDAO getInstance() {
@@ -79,6 +77,24 @@ public class FriendDAO {
         updateDatabaseReference();
         addListenerForFriendRequests();
         return senderUidsLiveData;
+    }
+
+    public void removeFriendRequest(User user) {
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds: snapshot.getChildren()) {
+                    if (ds.getValue(String.class).equals(user.getUid())){
+                        ds.getRef().removeValue();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void updateDatabaseReference(){

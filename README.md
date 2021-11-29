@@ -22,5 +22,5 @@ Think about it. Are you more likely to keep your progress going when no one know
 
 - [x] 7. As a user, I want to send a friend request to a user in order to befriend them.
 - [x] 8. As a user, I want to have an overview of my friends list in order to manage it.
-- [ ] 9. As a user, I want to remove a friend in order to manage my friends list.
+- [x] 9. As a user, I want to remove a friend in order to manage my friends list.
 - [ ] 10. As a user, I want to see an overview of my friend's habits progression in order to cheer them up.

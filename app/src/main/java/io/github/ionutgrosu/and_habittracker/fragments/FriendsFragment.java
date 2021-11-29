@@ -96,18 +96,23 @@ public class FriendsFragment extends Fragment {
         friendRequestAdapter.setFriendRequestManager(new FriendRequestAdapter.FriendRequestManager() {
             @Override
             public void acceptRequest(User user) {
-                System.out.println("*/*/*/*/        Accepting request" + user.getUsername());
                 userViewModel.acceptFriendRequest(user);
             }
 
             @Override
             public void declineRequest(User user) {
-                System.out.println("*/*/*/*/        Declining request" + user.getUsername());
                 userViewModel.declineFriendRequest(user);
                 userViewModel.getFriendRequests();
             }
         });
 
+        friendListAdapter.setFriendListManager(new FriendListAdapter.FriendListManager() {
+            @Override
+            public void removeFriend(User user) {
+                System.out.println("************    removing friend " + user.getUsername());
+                userViewModel.removeFriend(user);
+            }
+        });
 
         friendRequestBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +125,6 @@ public class FriendsFragment extends Fragment {
     }
 
 
-
     private void handleFriendRequest() {
         String input = friendRequestInput.getText().toString().trim();
         if (input.isEmpty()){
@@ -128,7 +132,6 @@ public class FriendsFragment extends Fragment {
             friendRequestInput.requestFocus();
             return;
         }
-
         userViewModel.sendFriendRequest(input);
     }
 

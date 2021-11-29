@@ -105,4 +105,14 @@ public class UserViewModel extends ViewModel {
         //  delete friend request entry from db
         friendRepository.removeFriendRequest(user);
     }
+
+    public void removeFriend(User user) {
+        User loggedInUser = userRepository.getUserWithUid(FirebaseAuth.getInstance().getUid());
+        //  remove user from my friends
+        loggedInUser.removeFriend(user.getUid());
+        userRepository.updateUser(loggedInUser);
+        //  remove me from user's friends
+        user.removeFriend(loggedInUser.getUid());
+        userRepository.updateUser(user);
+    }
 }

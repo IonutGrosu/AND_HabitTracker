@@ -33,4 +33,5 @@ public class FriendRepository {
     public void removeFriendRequest(User user) {
         friendDAO.removeFriendRequest(user);
     }
+
 }

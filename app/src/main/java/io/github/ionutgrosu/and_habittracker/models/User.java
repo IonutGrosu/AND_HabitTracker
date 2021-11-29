@@ -22,6 +22,8 @@ public class User {
         friendsUids.add(uid);
     }
 
+    public void removeFriend(String uid) {friendsUids.remove(uid);}
+
     public List<String> getFriendsUids(){
         return friendsUids;
     }

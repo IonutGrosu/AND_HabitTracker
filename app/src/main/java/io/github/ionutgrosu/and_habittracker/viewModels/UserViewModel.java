@@ -20,6 +20,7 @@ public class UserViewModel extends ViewModel {
     private FriendRepository friendRepository;
 
     public MutableLiveData<ArrayList<User>> usersRequestingFriendship;
+    public MutableLiveData<ArrayList<User>> friends;
 
     public UserViewModel() {
         userRepository = UserRepository.getInstance();
@@ -27,6 +28,8 @@ public class UserViewModel extends ViewModel {
 
         usersRequestingFriendship = new MutableLiveData<>();
         usersRequestingFriendship.setValue(new ArrayList<User>());
+        friends = new MutableLiveData<>();
+        friends.setValue(new ArrayList<User>());
     }
 
     public LiveData<User> getLoggedInUser(){
@@ -63,13 +66,24 @@ public class UserViewModel extends ViewModel {
             public void onChanged(ArrayList<String> strings) {
                 //  get all accounts related to those uids
                 ArrayList<User> users = new ArrayList<>();
-
-                System.out.println("**********" + strings);
                 for (String uid : strings) {
                     users.add(userRepository.getUserWithUid(uid));
                 }
-
                 usersRequestingFriendship.setValue(users);
+            }
+        });
+    }
+
+    public void getFriends() {
+        userRepository.getLoggedInUser().observeForever(new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                ArrayList<String> friendsUids = (ArrayList<String>) user.getFriendsUids();
+                ArrayList<User> tempFriends = new ArrayList<User>();
+                for (String friendUid : friendsUids) {
+                    tempFriends.add(userRepository.getUserWithUid(friendUid));
+                }
+                friends.setValue(tempFriends);
             }
         });
     }
@@ -77,16 +91,6 @@ public class UserViewModel extends ViewModel {
     public void acceptFriendRequest(User user) {
         //  delete friend request entry from db
         friendRepository.removeFriendRequest(user);
-
-//        getLoggedInUser().observeForever(new Observer<User>() {
-//            @Override
-//            public void onChanged(User loggedInUser) {
-//                //  add user to logged in user's friends
-//                loggedInUser.addFriend(user.getUid());
-//                //  update logged in user entry in db
-//                userRepository.updateUser(loggedInUser);
-//            }
-//        });
 
         User loggedInUser = userRepository.getUserWithUid(FirebaseAuth.getInstance().getUid());
         loggedInUser.addFriend(user.getUid());

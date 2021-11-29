@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ProgressBar;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -21,6 +20,7 @@ import java.util.ArrayList;
 import io.github.ionutgrosu.and_habittracker.activities.MainActivity;
 import io.github.ionutgrosu.and_habittracker.R;
 import io.github.ionutgrosu.and_habittracker.models.User;
+import io.github.ionutgrosu.and_habittracker.viewModels.FriendListAdapter;
 import io.github.ionutgrosu.and_habittracker.viewModels.FriendRequestAdapter;
 import io.github.ionutgrosu.and_habittracker.viewModels.UserViewModel;
 
@@ -28,11 +28,14 @@ public class FriendsFragment extends Fragment {
 
     private TextInputEditText friendRequestInput;
     private Button friendRequestBtn;
-    private ProgressBar friendRequestsPB;
 
     private UserViewModel userViewModel;
+
     private RecyclerView friendRequestsRV;
-    FriendRequestAdapter friendRequestAdapter;
+    private FriendRequestAdapter friendRequestAdapter;
+
+    private RecyclerView friendListRV;
+    private FriendListAdapter friendListAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,6 @@ public class FriendsFragment extends Fragment {
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         friendRequestAdapter = new FriendRequestAdapter(new ArrayList<User>(), getActivity());
-
         userViewModel.getFriendRequests();
 
         userViewModel.usersRequestingFriendship.observe(this, new Observer<ArrayList<User>>() {
@@ -50,10 +52,11 @@ public class FriendsFragment extends Fragment {
                 System.out.println(users.toString());
                 friendRequestsRV.setAdapter(friendRequestAdapter);
                 friendRequestAdapter.setRequestingUsers(users);
-                friendRequestsPB.setVisibility(View.GONE);
             }
         });
 
+        friendListAdapter = new FriendListAdapter(new ArrayList<User>(), getActivity());
+        userViewModel.getFriends();
     }
 
     @Override
@@ -67,7 +70,16 @@ public class FriendsFragment extends Fragment {
             public void onChanged(ArrayList<User> users) {
                 friendRequestsRV.setAdapter(friendRequestAdapter);
                 friendRequestAdapter.setRequestingUsers(users);
-                friendRequestsPB.setVisibility(View.GONE);
+            }
+        });
+
+        userViewModel.getFriends();
+
+        userViewModel.friends.observe(this, new Observer<ArrayList<User>>() {
+            @Override
+            public void onChanged(ArrayList<User> users) {
+                friendListRV.setAdapter(friendListAdapter);
+                friendListAdapter.setFriends(users);
             }
         });
     }
@@ -93,7 +105,6 @@ public class FriendsFragment extends Fragment {
                 System.out.println("*/*/*/*/        Declining request" + user.getUsername());
                 userViewModel.declineFriendRequest(user);
                 userViewModel.getFriendRequests();
-
             }
         });
 
@@ -128,9 +139,11 @@ public class FriendsFragment extends Fragment {
         friendRequestsRV.hasFixedSize();
         friendRequestsRV.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        friendListRV = view.findViewById(R.id.friendsListRV);
+        friendListRV.hasFixedSize();
+        friendListRV.setLayoutManager(new LinearLayoutManager(getContext()));
+
         friendRequestInput = view.findViewById(R.id.friendRequestInput);
         friendRequestBtn = view.findViewById(R.id.friendRequestBtn);
-        friendRequestsRV = view.findViewById(R.id.friendRequestsRV);
-        friendRequestsPB = view.findViewById(R.id.friendRequestsPB);
     }
 }

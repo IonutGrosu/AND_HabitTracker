@@ -14,9 +14,9 @@ Think about it. Are you more likely to keep your progress going when no one know
 ### Creating and seeing habits
 
 - [x] 3. As a user, I want input a habit name, duration (# of days), and when to repeat in order to create it.
-- [ ] 4. As a user, I want to have an overview of my current habits and their progression in order to check my progress.
+- [x] 4. As a user, I want to have an overview of my current habits and their progression in order to check my progress.
 - [ ] 5. As a user, I want to choose if I want to delete or keep a habit indefinitely when it ends, in order to manage my list of habits.
-- [ ] 6. As a user, I want to have an overview of my habits for the day in order to plan my day accordingly.
+- [x] 6. As a user, I want to have an overview of my habits for the day in order to plan my day accordingly.
 
 ### Social aspects
 

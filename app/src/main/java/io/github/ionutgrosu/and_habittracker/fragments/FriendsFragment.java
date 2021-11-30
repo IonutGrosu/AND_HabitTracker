@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -33,9 +34,11 @@ public class FriendsFragment extends Fragment {
 
     private RecyclerView friendRequestsRV;
     private FriendRequestAdapter friendRequestAdapter;
+    private TextView noFriendsRequestsTextView;
 
     private RecyclerView friendListRV;
     private FriendListAdapter friendListAdapter;
+    private TextView noFriendsTextView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,11 @@ public class FriendsFragment extends Fragment {
         userViewModel.usersRequestingFriendship.observe(getViewLifecycleOwner(), new Observer<ArrayList<User>>() {
             @Override
             public void onChanged(ArrayList<User> users) {
+                if (users.isEmpty()){
+                    noFriendsRequestsTextView.setVisibility(View.VISIBLE);
+                } else{
+                    noFriendsRequestsTextView.setVisibility(View.GONE);
+                }
                 friendRequestsRV.setAdapter(friendRequestAdapter);
                 friendRequestAdapter.setRequestingUsers(users);
             }
@@ -78,6 +86,11 @@ public class FriendsFragment extends Fragment {
         userViewModel.friends.observe(this, new Observer<ArrayList<User>>() {
             @Override
             public void onChanged(ArrayList<User> users) {
+                if (users.isEmpty()){
+                    noFriendsTextView.setVisibility(View.VISIBLE);
+                } else{
+                    noFriendsTextView.setVisibility(View.GONE);
+                }
                 friendListRV.setAdapter(friendListAdapter);
                 friendListAdapter.setFriends(users);
             }
@@ -109,7 +122,6 @@ public class FriendsFragment extends Fragment {
         friendListAdapter.setFriendListManager(new FriendListAdapter.FriendListManager() {
             @Override
             public void removeFriend(User user) {
-                System.out.println("************    removing friend " + user.getUsername());
                 userViewModel.removeFriend(user);
             }
         });
@@ -132,7 +144,9 @@ public class FriendsFragment extends Fragment {
             friendRequestInput.requestFocus();
             return;
         }
+
         userViewModel.sendFriendRequest(input);
+        friendRequestInput.setText("");
     }
 
     private void initViews(View view) {
@@ -141,10 +155,12 @@ public class FriendsFragment extends Fragment {
         friendRequestsRV = view.findViewById(R.id.friendRequestsRV);
         friendRequestsRV.hasFixedSize();
         friendRequestsRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        noFriendsRequestsTextView = view.findViewById(R.id.noFriendsRequestsTextView);
 
         friendListRV = view.findViewById(R.id.friendsListRV);
         friendListRV.hasFixedSize();
         friendListRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        noFriendsTextView = view.findViewById(R.id.noFriendsTextView);
 
         friendRequestInput = view.findViewById(R.id.friendRequestInput);
         friendRequestBtn = view.findViewById(R.id.friendRequestBtn);

@@ -4,20 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".fragments.FriendsFragment"
-    android:fillViewport="true">
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Friend requests"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout8" />
+    android:fillViewport="true"
+    tools:context=".fragments.FriendsFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout8"
@@ -34,26 +22,41 @@
             android:id="@+id/friendRequestInput"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Friend's name or email" />
+            android:hint="@string/friend_request_input_help" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/friendRequestBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="Send request"
-            app:layout_constraintBottom_toBottomOf="@+id/textInputLayout8"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textInputLayout8" />
+    <Button
+        android:id="@+id/friendRequestBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/send_request_btn_text"
+        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textInputLayout8" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="64dp" />
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/friend_requests_title"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout8" />
+
+    <TextView
+        android:id="@+id/noFriendsRequestsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_friend_requests"
+        app:layout_constraintBottom_toBottomOf="@+id/friendRequestsRV"
+        app:layout_constraintEnd_toEndOf="@+id/friendRequestsRV"
+        app:layout_constraintStart_toStartOf="@+id/friendRequestsRV"
+        app:layout_constraintTop_toTopOf="@+id/friendRequestsRV" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/friendRequestsRV"
@@ -64,23 +67,40 @@
         tools:layout_editor_absoluteX="1dp" />
 
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Friends"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/friendRequestsRV" />
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/friends_title"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/friendRequestsRV" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/friendsListRV"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+    <TextView
+        android:id="@+id/noFriendsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_friends"
+        app:layout_constraintBottom_toBottomOf="@+id/friendsListRV"
+        app:layout_constraintEnd_toEndOf="@+id/friendsListRV"
+        app:layout_constraintStart_toStartOf="@+id/friendsListRV"
+        app:layout_constraintTop_toTopOf="@+id/friendsListRV" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/friendsListRV"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="64dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">AND_HabitTracker</string>
+    <string name="No_habits">You have no ongoing habits</string>
+    <string name="habits_list_title">Your ongoing habits:</string>
+    <string name="profile_picture_description">User\'s profile picture</string>
+    <string name="log_out_btn_text">Log out</string>
+    <string name="friend_requests_title">Friend requests</string>
+    <string name="friend_request_input_help">Friend\'s name or email</string>
+    <string name="send_request_btn_text">Send request</string>
+    <string name="friends_title">Friends</string>
+    <string name="no_friends">You have no friends</string>
+    <string name="no_friend_requests">You have no pending friend requests</string>
+    <string name="habit_name_create_title">What habit do you want to develop?</string>
+    <string name="habit_duration_create_title">For how long do you want this to repeat?</string>
+    <string name="save_habit_btn_text">Save habit</string>
+    <string name="login_title">Login</string>
+    <string name="email_input_help">Email</string>
+    <string name="password_input_help">Password</string>
+    <string name="register_btn_text">Register</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="login_btn_text">Login</string>
+    <string name="name_input_help">Name</string>
 </resources>

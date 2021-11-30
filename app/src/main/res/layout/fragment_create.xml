@@ -12,7 +12,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-black"
-        android:text="What habit do you want to develop?"
+        android:text="@string/habit_name_create_title"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout6"
         app:layout_constraintStart_toStartOf="parent" />
@@ -44,7 +44,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-black"
-        android:text="For how long do you want this to repeat?"
+        android:text="@string/habit_duration_create_title"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout7"
         app:layout_constraintStart_toStartOf="parent" />
@@ -73,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="128dp"
-        android:text="Save habit"
+        android:text="@string/save_habit_btn_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

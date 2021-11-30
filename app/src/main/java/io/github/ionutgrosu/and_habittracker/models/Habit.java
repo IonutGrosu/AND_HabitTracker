@@ -1,6 +1,10 @@
 package io.github.ionutgrosu.and_habittracker.models;
 
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
+
+import io.github.ionutgrosu.and_habittracker.utils.Utils;
 
 public class Habit {
 
@@ -18,8 +22,7 @@ public class Habit {
     public Habit(String name, Date startDate, int duration) {
         this.name = name;
         this.startDate = startDate;
-        lastCheckDate = new Date();
-        lastCheckDate.setTime(0);
+        lastCheckDate = Utils.yesterday();
         this.duration = duration;
         progress = 0;
     }
@@ -74,10 +77,6 @@ public class Habit {
 
     public void increaseProgress(){
         progress++;
-    }
-
-    public void decreaseProgress(){
-        progress--;
     }
 
     @Override

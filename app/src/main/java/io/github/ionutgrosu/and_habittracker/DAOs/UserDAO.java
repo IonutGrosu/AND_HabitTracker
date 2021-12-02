@@ -35,6 +35,10 @@ public class UserDAO {
         dbRef = FirebaseDatabase.getInstance("https://and-habittracker-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         allUsers = new ArrayList<>();
         getCurrentDbUsers();
+
+        //  keep the logged in user data synced locally
+        DatabaseReference localRef = FirebaseDatabase.getInstance("https://and-habittracker-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users/" + FirebaseAuth.getInstance().getUid());
+        localRef.keepSynced(true);
     }
 
     public static UserDAO getInstance() {

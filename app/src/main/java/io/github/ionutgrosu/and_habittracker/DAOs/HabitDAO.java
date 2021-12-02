@@ -30,6 +30,7 @@ public class HabitDAO {
     private HabitDAO() {
 
         updateDatabaseReference();
+        dbReference.keepSynced(true);
 
         allHabits = new MutableLiveData<>();
 

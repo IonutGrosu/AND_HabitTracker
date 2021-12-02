@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginStart="32dp"
-        android:text="Friend username"
+        android:text="@string/username_title"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/removeBtnFriendListContainer"
         app:layout_constraintStart_toEndOf="@+id/profilePicFriendListContainer"
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="Remove"
+        android:text="@string/remove_btn_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

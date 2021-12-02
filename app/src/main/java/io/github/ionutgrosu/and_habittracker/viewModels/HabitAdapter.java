@@ -56,6 +56,7 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.habitName.setText(habits.get(position).getName());
+        holder.habitProgress.setText("" + habits.get(position).getProgress() + "/" + habits.get(position).getDuration());
         holder.progressBar.setProgress(getProgressPercentage(habits.get(position).getProgress(), habits.get(position).getDuration()));
         if (Utils.isToday(habits.get(position).getLastCheckDate())){
             holder.checkBox.setChecked(true);
@@ -71,6 +72,7 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView habitName;
+        TextView habitProgress;
         CheckBox checkBox;
         ProgressBar progressBar;
 
@@ -78,6 +80,7 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             habitName = itemView.findViewById(R.id.habitContainerName);
+            habitProgress = itemView.findViewById(R.id.habitContainerProgress);
             checkBox = itemView.findViewById(R.id.habitContainerCheckBox);
             progressBar = itemView.findViewById(R.id.habitContainerProgressBar);
             checkBox.setOnCheckedChangeListener((compoundButton, b) -> checkBoxClickListener.checkBoxClicked(b, habits.get(getAdapterPosition())));

@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/overviewFragment"
-        android:title="Overview"
+        android:title="@string/overview_title"
         android:icon="@drawable/ic_baseline_space_dashboard_24"
         app:showAsAction="always"/>
     <item
         android:id="@+id/accountFragment"
-        android:title="Account"
+        android:title="@string/account_title"
         android:icon="@drawable/ic_baseline_person_24"
         app:showAsAction="always"/>
     <item
         android:id="@+id/friendsFragment"
-        android:title="Friends"
+        android:title="@string/friends_title"
         android:icon="@drawable/ic_baseline_supervisor_account_24"
         app:showAsAction="always"/>
     <item android:title="" />

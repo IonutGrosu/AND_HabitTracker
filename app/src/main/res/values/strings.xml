@@ -7,7 +7,6 @@
     <string name="friend_requests_title">Friend requests</string>
     <string name="friend_request_input_help">Friend\'s name or email</string>
     <string name="send_request_btn_text">Send request</string>
-    <string name="friends_title">Friends</string>
     <string name="no_friends">You have no friends</string>
     <string name="no_friend_requests">You have no pending friend requests</string>
     <string name="habit_name_create_title">What habit do you want to develop?</string>
@@ -20,4 +19,10 @@
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="login_btn_text">Login</string>
     <string name="name_input_help">Name</string>
+    <string name="remove_btn_text">Remove</string>
+    <string name="sender_username_request_container_title">Sender username</string>
+    <string name="username_title">Username</string>
+    <string name="overview_title">Overview</string>
+    <string name="account_title">Account</string>
+    <string name="friends_title">Friends</string>
 </resources>

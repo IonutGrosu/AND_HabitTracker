@@ -12,18 +12,27 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_weight="1"
         android:fontFamily="sans-serif-medium"
-        android:text="Name"
         android:textAlignment="textStart"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/habitContainerCheckBox"
+        app:layout_constraintEnd_toStartOf="@+id/habitContainerProgress"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/habitContainerProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/habitContainerName"
+        app:layout_constraintEnd_toStartOf="@+id/habitContainerCheckBox"
+        app:layout_constraintTop_toTopOf="@+id/habitContainerName" />
+
     <CheckBox
         android:id="@+id/habitContainerCheckBox"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="@+id/habitContainerName"

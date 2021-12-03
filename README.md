@@ -4,6 +4,8 @@ There are lots of applications built around developing habits. But this one uses
   
 Think about it. Are you more likely to keep your progress going when no one knows about it or when your best friend knows what your goal is and can check on your progress?
 
+# [Youtube demo video](https://youtu.be/LLw2GDl5ssQ)
+
 # User stories
 
 ## Prioritized

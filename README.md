@@ -3,6 +3,7 @@
 There are lots of applications built around developing habits. But this one uses peer pressure in order to make you develop the habbits that you want.  
   
 Think about it. Are you more likely to keep your progress going when no one knows about it or when your best friend knows what your goal is and can check on your progress?
+
 # User stories
 
 ## Prioritized
@@ -36,3 +37,7 @@ Think about it. Are you more likely to keep your progress going when no one know
 - [x] 6. As a user, I want to have an overview of my friends list in order to manage it.
 - [x] 7. As a user, I want to remove a friend in order to manage my friends list.
 - [ ] 9. As a user, I want to see an overview of my friend's habits progression in order to cheer them up.
+
+# Other sources
+
+An API was used for generating the used profile pictures: [Kwelo Identicon Generator](https://api.kwelo.com/media/identicon)

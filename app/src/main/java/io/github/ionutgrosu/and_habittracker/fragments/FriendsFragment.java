@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -145,7 +146,11 @@ public class FriendsFragment extends Fragment {
             return;
         }
 
-        userViewModel.sendFriendRequest(input);
+        try {
+            userViewModel.sendFriendRequest(input);
+        } catch (Exception e) {
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
         friendRequestInput.setText("");
     }
 

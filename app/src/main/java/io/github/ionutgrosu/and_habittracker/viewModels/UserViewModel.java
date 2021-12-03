@@ -42,7 +42,7 @@ public class UserViewModel extends ViewModel {
         userRepository.saveUser(userToSave);
     }
 
-    public void sendFriendRequest(String input) {
+    public void sendFriendRequest(String input) throws Exception {
         User friendRequestReceiver;
 
         if (input.contains("@")){
@@ -51,10 +51,13 @@ public class UserViewModel extends ViewModel {
             friendRequestReceiver = userRepository.getUserWithUsername(input);
         }
 
-        String senderUID = FirebaseAuth.getInstance().getUid();
 
-        friendRepository.sendFriendRequest(friendRequestReceiver, senderUID);
-
+        if (friendRequestReceiver != null){
+            String senderUID = FirebaseAuth.getInstance().getUid();
+            friendRepository.sendFriendRequest(friendRequestReceiver, senderUID);
+        } else {
+            throw new Exception(input + " is not a user, try something else.");
+        }
     }
 
     public void getFriendRequests() {

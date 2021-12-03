@@ -39,7 +39,7 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
         this.habits = habits;
     }
 
-    private int getProgressPercentage(int current, int total) {
+    public int getProgressPercentage(int current, int total) {
         return (current * 100) / total;
     }
 
